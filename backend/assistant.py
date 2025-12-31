@@ -29,18 +29,18 @@ class MimirAssistant:
     def query(self, text: str, persona="default", mode="factual"):
         text = text.strip()
 
-    if any(q in text_lower for q in [
-        "who is your creator",
-        "who created you",
-        "who made you",
-        "who developed you",
-        "your creator"
-    ]):
-        return {
+       if any(q in text_lower for q in [
+          "who is your creator",
+          "who created you",
+          "who made you",
+          "who developed you",
+           "your creator"
+        ]):
+           return {
             "answer": "I was created and architected by Kalpesh Sharma.",
             "sources": [],
             "confidence": 1.0,
-        }
+           }
 
         if not text:
             return {
