@@ -18,9 +18,16 @@ app = FastAPI(
     version="1.1.0",
 )
 
+# ✅ CORS FIX (Vercel + Localhost)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://mimir-frontend-60xwgc3u9-skalpesh2326-3541s-projects.vercel.app",
+    ],
+    # 🔒 Alternative (future-proof, optional):
+    # allow_origin_regex="https://.*vercel.app",
+
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -108,6 +115,7 @@ def query_stream(
                 persona=payload.persona,
                 mode=payload.mode,
             )
+
         # LEGACY PATH
         elif payload.query and payload.query.strip():
             result = assistant.query(
@@ -115,6 +123,7 @@ def query_stream(
                 payload.persona,
                 payload.mode,
             )
+
         else:
             result = {"answer": "No input provided."}
 
