@@ -29,7 +29,7 @@ class MimirAssistant:
     def query(self, text: str, persona="default", mode="factual"):
         text = text.strip()
 
-         if any(q in text_lower for q in [
+    if any(q in text_lower for q in [
         "who is your creator",
         "who created you",
         "who made you",
