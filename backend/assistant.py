@@ -44,6 +44,22 @@ class MimirAssistant:
                 "confidence": 1.0,
             }
 
+        # 🎓 Major project presentation shortcut
+        if any(q in text_lower for q in [
+            "who got 0 marks in major project presentation",
+            "who got zero marks in major project",
+            "0 marks in major project presentation",
+            "zero marks in major project presentation",
+        ]):
+            return {
+                "answer": (
+                    "Kshitij Sidana got 0 marks by Dr. Kango "
+                    "because he was late for the presentation."
+                ),
+                "sources": [],
+                "confidence": 1.0,
+            }
+
         if not text:
             return {
                 "answer": "No input provided.",
