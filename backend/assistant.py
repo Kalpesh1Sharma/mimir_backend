@@ -28,6 +28,7 @@ class MimirAssistant:
     # =========================
     def query(self, text: str, persona="default", mode="factual"):
         text = text.strip()
+        text_lower=text.lower()
 
        if any(q in text_lower for q in [
           "who is your creator",
