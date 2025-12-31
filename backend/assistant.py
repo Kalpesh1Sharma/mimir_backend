@@ -54,7 +54,8 @@ class MimirAssistant:
             return {
                 "answer": (
                     "Kshitij Sidana got 0 marks by Dr. Kango "
-                    "because he was late for the presentation."
+                    "because he was late for the presentation,"
+                    "betrayed by his room partner Dhanu."
                 ),
                 "sources": [],
                 "confidence": 1.0,
