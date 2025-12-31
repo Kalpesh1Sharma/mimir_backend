@@ -20,7 +20,6 @@ class MimirAssistant:
 
         # 🔹 short-term conversational memory (last N turns)
         self.memory: List[Dict[str, str]] = []
-
         self.MAX_MEMORY = 8
 
     # =========================
@@ -30,19 +29,20 @@ class MimirAssistant:
         text = text.strip()
         text_lower = text.lower()
 
-       if any(q in text_lower for q in [
-        "who is your creator",
-        "who created you",
-        "who made you",
-        "who developed you",
-        "your creator",
-        "who built you"
-    ]):
-        return {
-            "answer": "I was created and architected by Kalpesh Sharma.",
-            "sources": [],
-            "confidence": 1.0,
-        }
+        # 🔮 Creator question shortcut
+        if any(q in text_lower for q in [
+            "who is your creator",
+            "who created you",
+            "who made you",
+            "who developed you",
+            "your creator",
+            "who built you",
+        ]):
+            return {
+                "answer": "I was created and architected by Kalpesh Sharma.",
+                "sources": [],
+                "confidence": 1.0,
+            }
 
         if not text:
             return {
@@ -114,7 +114,7 @@ class MimirAssistant:
             }
 
         # sync memory from frontend
-        self.memory = messages[-self.MAX_MEMORY :]
+        self.memory = messages[-self.MAX_MEMORY:]
 
         last_user_msg = next(
             (m["content"] for m in reversed(messages) if m["role"] == "user"),
@@ -151,7 +151,7 @@ class MimirAssistant:
     # =========================
     def _add_memory(self, role: str, content: str):
         self.memory.append({"role": role, "content": content})
-        self.memory = self.memory[-self.MAX_MEMORY :]
+        self.memory = self.memory[-self.MAX_MEMORY:]
 
     def _is_memory_question(self, text: str) -> bool:
         triggers = [
